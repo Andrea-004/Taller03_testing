@@ -21,6 +21,7 @@
     import androidx.compose.runtime.setValue
     import androidx.compose.ui.Alignment
     import androidx.compose.ui.Modifier
+    import androidx.compose.ui.platform.testTag
     import androidx.compose.ui.text.input.KeyboardType
     import androidx.compose.ui.unit.dp
 
@@ -53,29 +54,29 @@
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Number
                 ),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().testTag("billAmount")
             )
 
-            Text("Porcentaje de propina: $tipPercentage%")
+            Text("Porcentaje de propina: $tipPercentage%", modifier = Modifier.testTag("tipPercentageText"))
             Slider(
                 value = tipPercentage.toFloat(),
                 onValueChange = { tipPercentage = it.toInt() },
                 valueRange = 0f..50f,
                 steps = 49,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().testTag("tipSlider")
             )
 
-            Text("Número de personas: $numberOfPeople")
+            Text("Número de personas: $numberOfPeople", modifier = Modifier.testTag("numberPeopleText"))
             Row (
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Button(onClick = { if (numberOfPeople > 1) numberOfPeople-- }) {
+                Button(onClick = { if (numberOfPeople > 1) numberOfPeople-- }, modifier = Modifier.testTag("decreasePeopleButton")) {
                     Text("-")
                 }
                 Text(text = numberOfPeople.toString())
-                Button(onClick = { numberOfPeople++ }) {
+                Button(onClick = { numberOfPeople++ }, modifier = Modifier.testTag("increasePeopleButton")) {
                     Text("+")
                 }
             }
@@ -86,7 +87,8 @@
             ) {
                 Checkbox(
                     checked = roundUp,
-                    onCheckedChange = { roundUp = it }
+                    onCheckedChange = { roundUp = it },
+                    modifier = Modifier.testTag("roundCheckbox")
                 )
                 Text("Redondear propina", modifier = Modifier.padding(start = 8.dp))
             }
@@ -95,10 +97,12 @@
 
             Text(
                 text = "Propina: $${"%.2f".format(tip)}",
+                modifier = Modifier.testTag("tipText"),
                 style = MaterialTheme.typography.headlineSmall
             )
             Text(
                 text = "Total por persona: $${"%.2f".format(totalPerPerson)}",
+                modifier = Modifier.testTag("totalPerPerson"),
                 style = MaterialTheme.typography.headlineSmall
             )
         }

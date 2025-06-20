@@ -47,4 +47,32 @@ class TipLogicTest {
 
         assertEquals(expectedResult, totalPerPerson, 0.0)
     }
+
+    //Pruebas adicionales
+
+    @Test
+    fun calculateWithZeroPercent() {
+        val amount = 150.0
+        val tipPercent = 0
+        val roundUp = false
+
+        val expected = 0.0
+
+        val result = calculateTip(amount, tipPercent, roundUp)
+
+        assertEquals(expected, result, 0.0)
+    }
+
+    @Test
+    fun calculateMinimumTipWithRoundUp() {
+        val amount = 1.99
+        val tipPercent = 10
+        val roundUp = true
+
+        val expected = 1.0
+
+        val result = calculateTip(amount, tipPercent, roundUp)
+
+        assertEquals(expected, result, 0.0)
+    }
 }

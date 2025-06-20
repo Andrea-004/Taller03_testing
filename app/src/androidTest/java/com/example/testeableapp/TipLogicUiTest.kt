@@ -17,6 +17,8 @@ class TipLogicUiTest {
             TipCalculatorScreen()
         }
 
+        /////////
+
         composeRule.onNodeWithText("Monto de la cuenta").performTextInput("102")
 
         val tipBefore = composeRule

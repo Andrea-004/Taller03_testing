@@ -34,12 +34,12 @@ class TipLogicTest {
 
     @Test
     fun totalPerPersonWithTip() {
-        val amount = 120.0
-        val tipPercent = 10
+        val amount = 250.0
+        val tipPercent = 15
         val roundUp = false
-        val numberOfPeople = 4
+        val numberOfPeople = 5
 
-        val expectedResult = 33.0
+        val expectedResult = 57.5
 
         val tip = calculateTip(amount, tipPercent, roundUp)
 
